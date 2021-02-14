@@ -20,7 +20,60 @@ const bot = new App({
       await bot.client.chat.postMessage({
         token: context.botToken,
         channel: event.channel,
-        text: `What is up?  <@${event.user}>`,
+        text: `What is up?  <@${event.user}>`, // This line does not work with the included blocks property
+        blocks: [
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: `<@${event.user}> What is the newest way of handling asynchronous code in javascript?`,
+            },
+            accessory: {
+              type: 'radio_buttons',
+              options: [
+                {
+                  text: {
+                    type: 'plain_text',
+                    text: 'Promise',
+                    emoji: true,
+                  },
+                  value: 'value-0',
+                },
+                {
+                  text: {
+                    type: 'plain_text',
+                    text: 'Async/Await',
+                    emoji: true,
+                  },
+                  value: 'value-1',
+                },
+                {
+                  text: {
+                    type: 'plain_text',
+                    text: 'callback',
+                    emoji: true,
+                  },
+                  value: 'value-2',
+                },
+              ],
+              action_id: 'radio_buttons-action',
+            },
+          },
+        ],
+      });
+
+      
+      bot.action('radio_buttons-action', async (params) => {
+        const { action, ack, say, respond, body } = params;
+        console.log('ACTION TRIGGERED', action);
+        await ack();
+        if (action.selected_option.value === 'value-1') {
+          await respond(
+            `${action.selected_option.text.text} is Correct! \n<@${body.user.username}> Wins this Round!`
+          );
+        } else {
+          await say(`<@${body.user.username}> That was Wrong Try Again!`);
+        }
       });
     } catch (e) {
       console.log(`error responding ${e}`);
