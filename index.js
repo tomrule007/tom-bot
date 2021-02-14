@@ -6,6 +6,7 @@ const { PORT = 3000, SLACK_SIGNING_SECRET, SLACK_BOT_TOKEN } = process.env;
 const bot = new App({
   signingSecret: SLACK_SIGNING_SECRET,
   token: SLACK_BOT_TOKEN,
+  endpoints: ['/slack/events', '/slack/commands', '/slack/actions'],
 });
 
 //TODO: Update to node v14.8 to allow top level await and not need IIFE
