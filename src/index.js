@@ -14,6 +14,19 @@ const bot = new App({
   await bot.start(PORT);
   console.log('BOLT APP IS RUNNING, port:', PORT);
 
+  bot.message(async ({ message, say }) => {
+    console.log('message received', message);
+    const reversedText = [...message.text].reverse().join('');
+    await say(reversedText);
+  });
+
+  bot.command('/echo', async ({ command, ack, say }) => {
+    // Acknowledge command request
+    await ack();
+
+    await say(`${command.text}`);
+  });
+
   bot.event('app_mention', async ({ context, event }) => {
     try {
       console.log('app_mention, from', event);
@@ -62,7 +75,6 @@ const bot = new App({
         ],
       });
 
-      
       bot.action('radio_buttons-action', async (params) => {
         const { action, ack, say, respond, body } = params;
         console.log('ACTION TRIGGERED', action);

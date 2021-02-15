@@ -2,16 +2,19 @@
   "name": "tom-bot",
   "version": "0.1.0",
   "description": "playground for slack / microsoft teams chatbots",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "git@github.com:tomrule007/tom-bot.git",
   "author": "Thomas Herzog <Tomrule007@gmail.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon --watch src"
   },
   "dependencies": {
     "@slack/bolt": "^3.2.0",
     "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

@@ -43,5 +43,5 @@ yarn start
 
 - [x] first working slackbot commit: bot responds to bot mentions from users
 - [ ] create a /command with data persist
-- [x] Add Instructions to readme: dev api endpoint, evniornment variables & were to get them
-- [ ] Move to Docker
+- [x] Add Instructions to readme: dev api endpoint, environment variables & were to get them
+- [x] Move to Docker
