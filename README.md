@@ -17,6 +17,7 @@ cd tom-bot
 SLACK_BOT_TOKEN="xoxb-****" ## 'OAuth & Permissions'
 SLACK_SIGNING_SECRET= "****" ## 'Basic Information'
 PORT=8080
+VORTEX_URL=*******.app.vtxhub.com  # Only needed if using vortex with docker
 ```
 
 3. Create tunnel to dev server (two possible options)
@@ -36,6 +37,19 @@ yarn install
 vortex --save ## save allows you to use pin instead of email/password
 yarn start
 ```
+
+## Development with Docker
+
+Complete steps 1 & 2 above (skip 3,4 and 5) and then run these command
+
+```bash
+docker-compose up
+# Must open a new terminal and
+docker attach tom-bot_vortex_1
+# Then finish the login process (providing email, password and creating a pin)
+```
+
+\* Requires docker-compose and docker to be installed
 
 ---
 

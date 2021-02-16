@@ -9,3 +9,9 @@ services:
     ports:
       - '8080:8080'
     command: ['yarn', 'start']
+  vortex:
+    env_file: .env
+    build: vortex/.
+    stdin_open: true
+    tty: true
+    command: ["sh","-c","vortex --site ${VORTEX_URL} --provider http --host node --port $PORT --save"]
